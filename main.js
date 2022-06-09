@@ -1,33 +1,75 @@
-let form = document.querySelector('.form')
-let submit = document.querySelector('.js--submit')
-let from = form.querySelector('.js--number')
-let fields = form.querySelectorAll('.input')
-
-
-form.addEventListener('submit', function (event) {
-    event.preventDefault()
-    let errors= form.querySelectorAll('.error')
-
-    for (let i = 0; i < errors.length; i++) {
-        errors[i].remove()
+function formValidate(fields) {
+  const reg = /[A-Za-zА-Яа-яЁё!"№;%:?*@#$%^&*()_]/g;
+  fields.number.addEventListener("input", function (e) {
+    const value = this.value;
+    this.value = this.value.replace(reg, "").substr(0, 16);
+    if (this.value.length >= 16) {
+      document.querySelector(".js--res_number").innerHTML = `
+        ${value.substring(0, 4)} - ${value.substring(4, 8)}
+         - ${value.substring(8, 12)} - ${value.substring(12, 16)}
+    `;
     }
-    
-    for (let i = 0; i < fields.length; i++) {
-       if (!fields[i.value]){
-        console.log("fields is blank", fields[i])
-        let error = document.createElement('div')
-        error.className="error"
-        from.style.border = "1px solid red"
-        error.innerHTML= "cennot be blank"
-        form[i].parentElement.insertBefore(error, fields[i])
-       }
-    }
-})
+    checkAllField();
+  });
 
+  fields.name.addEventListener("input", function (e) {
+    const regN = /[^A-Za-zА-Яа-яЁё\s]/g;
+    this.value = this.value.replace(regN, "").substr(0, 13);
+    document.querySelector(".js--res_name").innerHTML = this.value;
+    checkAllField();
+  });
 
-from.addEventListener('input',function (arg) {
-    this.value = Number( this.value.substr(0,15))
-    if(isNaN(this.value)) {
-       
+  fields.month.addEventListener("input", function () {
+    if (this.value !== "null") {
+      document.querySelector(".js--res_month").innerHTML = this.value;
+      checkAllField();
     }
-})
+  });
+
+  fields.year.addEventListener("input", function () {
+    if (this.value !== "null") {
+      document.querySelector(".js--res_year").innerHTML = this.value;
+      checkAllField();
+    }
+  });
+  const validElement = document.querySelector(".js--cvv");
+  validElement.addEventListener("input", function () {
+    this.value = +this.value.substr(0, 3).replace(reg, "");
+    checkAllField();
+  });
+
+  function checkAllField() {
+    let valid = [];
+    const validElement = document.querySelector(".js--submit");
+    for (let key in fields) {
+      fields.number.value.length >= 16 &&
+      fields.cvv.value.length >= 3 &&
+      fields.name.value.length >= 3
+        ? valid.push(true)
+        : valid.push(false);
+      fields[key].value.length !== 0 ? valid.push(true) : valid.push(false);
+    }
+
+    valid.some((validElement) => validElement === false)
+      ? (validElement.disabled = true)
+      : (validElement.disabled = false);
+  }
+  const form = document.querySelector(".form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log({
+      number: fields.number.value,
+      month: fields.month.value,
+      year: fields.year.value,
+      cvv: validElement.value,
+    });
+  });
+}
+
+formValidate({
+  number: document.querySelector(".js--number"),
+  name: document.querySelector(".js--name"),
+  month: document.querySelector(".js--month"),
+  year: document.querySelector(".js--year"),
+  cvv: document.querySelector(".js--cvv"),
+});
