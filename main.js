@@ -1,8 +1,8 @@
 function formValidate(fields) {
-  const reg = /[A-Za-zА-Яа-яЁё!"№;%:?*@#$%^&*()_]/g;
+  const reg = /\D/g;
   fields.number.addEventListener("input", function (e) {
     const value = this.value;
-    this.value = this.value.replace(reg, "").substr(0, 16);
+    this.value = this.value.replace(reg, "").substring(0, 16);
     if (this.value.length >= 16) {
       document.querySelector(".js--res_number").innerHTML = `
         ${value.substring(0, 4)} - ${value.substring(4, 8)}
@@ -13,8 +13,7 @@ function formValidate(fields) {
   });
 
   fields.name.addEventListener("input", function (e) {
-    const regN = /[^A-Za-zА-Яа-яЁё\s]/g;
-    this.value = this.value.replace(regN, "").substr(0, 13);
+    this.value = this.value.replace(/[^A-Za-zА-Яа-яЁё\s]/g, "").substring(0, 13);
     document.querySelector(".js--res_name").innerHTML = this.value;
     checkAllField();
   });
@@ -34,7 +33,7 @@ function formValidate(fields) {
   });
   const validElement = document.querySelector(".js--cvv");
   validElement.addEventListener("input", function () {
-    this.value = +this.value.substr(0, 3).replace(reg, "");
+    this.value = +this.value.substring(0, 3).replace(reg, "");
     checkAllField();
   });
 
