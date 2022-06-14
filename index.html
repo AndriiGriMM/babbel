@@ -6,76 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
+    <style>
+
+      </style>
+      
     <title>document</title>
 </head>
-
-<body>
-    <div class="container">
-        <div class="card">
-            <div class="res_number">
-                <span class="js--res_number">XXXX-XXXX-XXXX-XXXX</span>
-            </div>
-            <div class="nameDate">
-                <div class="res_name">
-                    <p>Card Holder</p>
-                    <span class="js--res_name"></span>
-                </div>
-                <div class="res_date">
-                    <p>Expires</p>
-                    <span class="js--res_month">MM</span>
-                    /<span class="js--res_year">YY</span>
-                </div>
-            </div>
-        </div>
-        <form id="form" method="post" action="/send.php" class="form">
-            <div class="inputNameNumber">
-                <label class="form-control">
-                    <p>Card number</p>
-                    <input class="js--number" name="username" placeholder="Введите номер" minlength="16" />
-                </label>
-                <label class="form-control">
-                    <p>Card name</p>
-                    <input class="js--name" name="username" placeholder="Введите" maxlength="13" />
-                </label>
-            </div>
-            <div class="inputDate">
-                <label class="form-control">
-                    <p>Expiration Date</p>
-                    <select class="month js--month">
-                        <option disabled selected value> Месяц </option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
-                </label>
-                <label class="form-control">
-                    <select class="year js--year">
-                        <option disabled selected value> Год </option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                    </select>
-                </label>
-                <label class="form-control">
-                    <p>CVV</p>
-                    <input class="js--cvv" name="username" placeholder="Введите" />
-                </label>
-            </div>
-            <button type="submit" class="submit js--submit" disabled>Зарегистрироваться</button>
-        </form>
-
-    </div>
+<div class="container">
+    <ul id="" class="list-items">
+        <li class="active">Элемент №0</li>
+        <li>Элемент №1</li>
+        <li>Элемент №2</li>
+        <li>Элемент №3</li>
+        <li>Элемент №4</li>
+        <li>Элемент №5</li>
+        <li>Элемент №6</li>
+      </ul>
+</div>
+<div class="button-holder">
+    <button  class="select-prev" disabled>Предыдущий</button>
+    <button  class="select-next" >Следующий</button>
+</div>
 
     <script src="main.js"></script>
 </body>
