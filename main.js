@@ -3,27 +3,20 @@ function Slider(params) {
   params.next.addEventListener('click', function (event) {
     params.index = params.index + 1
 
-    console.log(params.maxLenghs)
     updateSelection();
-    checkBtnNext()
-    checkBtnPrev()
   });
 
   params.prev.addEventListener('click', function () {
     params.index = params.index - 1
-
     updateSelection();
-    checkBtnPrev()
-    checkBtnNext()
   });
 
   function checkBtnNext() {
     params.next.disabled = params.index === params.maxLenghs
-    console.log(params.index)
   }
 
   function checkBtnPrev() {
-    params.prev.disabled = params.index === 0
+    params.prev.disabled = params.index === 0 || params.index !== 0
   }
 
   function updateSelection() {
@@ -35,7 +28,8 @@ function Slider(params) {
     params.items[params.index].classList.add('active');
 
   }
-
+  checkBtnPrev()
+  checkBtnNext()
 }
 const slider = new Slider({
   prev: document.querySelector('.select-prev'),
@@ -47,4 +41,3 @@ const slider = new Slider({
 
 }
 )
-
