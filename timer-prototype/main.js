@@ -7,12 +7,12 @@ function Clock() {
     if (hours < 10) { hours = "0" + hours }
     if (minutes < 10) { minutes = "0" + minutes }
     if (seconds < 10) { seconds = "0" + seconds }
-    let clock = `${hours}:${minutes}:${seconds}`;
+    const clock = `${hours}:${minutes}:${seconds}`;
     document.querySelector(".clock").innerHTML = clock;
   }, 1000)
 }
 
-let person = new Clock()
+const person = new Clock()
 
 Clock.prototype = document.querySelector('.stop')
   .addEventListener('click', function () {
