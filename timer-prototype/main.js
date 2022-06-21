@@ -1,5 +1,5 @@
 function Clock() {
-  timerID = setInterval(() => {
+  this.timerID = setInterval(() => {
     let date = new Date();
     let hours = date.getHours()
     let minutes = date.getMinutes()
@@ -14,8 +14,12 @@ function Clock() {
 
 const person = new Clock()
 
-Clock.prototype = document.querySelector('.stop')
-  .addEventListener('click', function () {
-    clearInterval(timerID)
-  })
+document.querySelector('.stop')
+.addEventListener('click', ()=> {
+  person.stop()
+})
+
+Clock.prototype.stop = function () {
+  clearInterval(this.timerID)
+}
 
