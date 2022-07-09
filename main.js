@@ -1,5 +1,0 @@
-function EcmaScript (arg1="error",arg2,arg3, ...arr) {
-arguments.length < 5? console.log("ERROR"): console.log (`${arg1}-${arg2}-${arg3}`)
-console.log ({...arr})
-}
-new EcmaScript([undefined,2,3,4,5,'sd'],12,"test",11,13);
